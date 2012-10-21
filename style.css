@@ -1,0 +1,25 @@
+body {
+	text-align: center;
+    margin:0;
+    padding:0;
+}
+
+#content_container {
+    padding-bottom:3em;
+}
+
+#header {
+    margin: 0 0 0.7em;
+    background:#efefef;
+    text-align:center;
+    padding:10px;
+}
+
+#footer {
+    position:fixed;
+    bottom:0px;
+    background:#efefef;
+    text-align:center;
+    padding:10px;
+    width:100%;
+}
