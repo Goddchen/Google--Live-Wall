@@ -1,0 +1,4 @@
+#RewriteEngine on
+RewriteCond %{REQUEST_URI} !(index.php)
+RewriteRule ^#(.*?)/?$ index.php?query1=$1 [NE,L]
+RewriteRule ^(.*?)/?$ index.php?query=$1 [L]
