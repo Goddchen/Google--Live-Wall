@@ -47,7 +47,7 @@
 							$.each(data.items, function(i, item) {
 								if(!$("#post-" + item.id).length) {
 									var newPost = 
-										"<div class='post' id='post-" + item.id + "'>"
+										"<div class='post' id='post-" + item.id + "'><p>"
 										+ "<a href='" + item.url + "'>" + item.published + "</a><br>"
 										+ "<a href='" + item.actor.url + "'><img src='" + item.actor.image.url + "'></a><br>"
 										+ "<a href='" + item.actor.url + "'>" + item.actor.displayName + "</a><br><br>"
@@ -59,11 +59,11 @@
 												} else if(attachment.objectType === "photo" && attachment.fullImage && (!attachment.fullImage.height || !attachment.fullImage.width)) {
 													newPost += "<img src='" + attachment.image.url + "' /><br><br>";
 												} else if(attachment.objectType === "video") {
-													newPost += "<a href='" + attachment.url + "'>" + attachment.displayName + "<br><img src='" + attachment.image.url + "' /></a><br><br>";
+													newPost += "<iframe class='youtube-player' type='text/html' width='480' height='288' src='"+attachment.embed.url+"' frameborder='0'></iframe><br><br>";
 												}
 											});
 										}
-									newPost += "<hr><br><br></div>";
+									newPost += "</p></div><hr>";
 									$("#posts").prepend(newPost);
 								}
 							});
