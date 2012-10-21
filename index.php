@@ -33,7 +33,10 @@
 		<script type="text/javascript">
 			$(document).ready(function() {
 				function reverseSort(a, b) {
-					return a.published > b.published;
+					// Example: 2012-10-21T13:56:28.000Z
+					var aDate = Date.parse(a.published);
+					var bDate = Date.parse(b.published);
+					return aDate - bDate;
 				}
 				
 				function updatePosts() {
@@ -45,14 +48,18 @@
 								if(!$("#post-" + item.id).length) {
 									var newPost = 
 										"<div class='post' id='post-" + item.id + "'>"
-										+ item.published + "<br>"
+										+ "<a href='" + item.url + "'>" + item.published + "</a><br>"
 										+ "<a href='" + item.actor.url + "'><img src='" + item.actor.image.url + "'></a><br>"
 										+ "<a href='" + item.actor.url + "'>" + item.actor.displayName + "</a><br><br>"
 										+ item.object.content + "<br><br>";
 										if(item.object.attachments) {
 											$.each(item.object.attachments, function(i, attachment) {
 												if(attachment.objectType === "photo" && attachment.fullImage && attachment.fullImage.height && attachment.fullImage.width) {
-													newPost += "<img width='320' src='" + attachment.fullImage.url + "' /><br><br>";
+													newPost += "<a href='" + attachment.fullImage.url + "' target='_blank'><img width='320' src='" + attachment.fullImage.url + "' /></a><br><br>";
+												} else if(attachment.objectType === "photo" && attachment.fullImage && (!attachment.fullImage.height || !attachment.fullImage.width)) {
+													newPost += "<img src='" + attachment.image.url + "' /><br><br>";
+												} else if(attachment.objectType === "video") {
+													newPost += "<a href='" + attachment.url + "'>" + attachment.displayName + "<br><img src='" + attachment.image.url + "' /></a><br><br>";
 												}
 											});
 										}
