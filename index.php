@@ -32,26 +32,33 @@
 		<script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
 		<script type="text/javascript">
 			$(document).ready(function() {
+				function reverseSort(a, b) {
+					return a.published > b.published;
+				}
+				
 				function updatePosts() {
 					$.getJSON(
 						"<?php echo($plusurl); ?>",
 						function (data) {
-							$("#posts").text("");
+							data.items.sort(reverseSort);
 							$.each(data.items, function(i, item) {
-								$("#posts").append(
-									"<div class='post'>"
-									+ item.published + "<br>"
-									+ "<a href='" + item.actor.url + "'><img src='" + item.actor.image.url + "'></a><br>"
-									+ "<a href='" + item.actor.url + "'>" + item.actor.displayName + "</a><br><br>"
-									+ item.object.content + "<br><br>");
-									if(item.object.attachments) {
-										$.each(item.object.attachments, function(i, attachment) {
-											if(attachment.objectType === "photo" && attachment.fullImage && attachment.fullImage.height && attachment.fullImage.width) {
-												$("#posts").append("<img width='320' src='" + attachment.fullImage.url + "' /><br><br>");
-											}
-										});
-									}
-									$("#posts").append("<hr><br><br></div>");
+								if(!$("#post-" + item.id).length) {
+									var newPost = 
+										"<div class='post' id='post-" + item.id + "'>"
+										+ item.published + "<br>"
+										+ "<a href='" + item.actor.url + "'><img src='" + item.actor.image.url + "'></a><br>"
+										+ "<a href='" + item.actor.url + "'>" + item.actor.displayName + "</a><br><br>"
+										+ item.object.content + "<br><br>";
+										if(item.object.attachments) {
+											$.each(item.object.attachments, function(i, attachment) {
+												if(attachment.objectType === "photo" && attachment.fullImage && attachment.fullImage.height && attachment.fullImage.width) {
+													newPost += "<img width='320' src='" + attachment.fullImage.url + "' /><br><br>";
+												}
+											});
+										}
+									newPost += "<hr><br><br></div>";
+									$("#posts").prepend(newPost);
+								}
 							});
 					});
 				}
