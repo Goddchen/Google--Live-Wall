@@ -63,7 +63,7 @@
 												}
 											});
 										}
-									newPost += "</p></div><hr>";
+									newPost += "</p></div>";
 									$("#posts").prepend(newPost);
 								}
 							});
@@ -79,16 +79,10 @@
 		</script>
 	</head>
 	<body>
-		<h1>Google+ Wall for "<?php echo($query); ?>"</h1>
+		<div id="header">
+			<?php include("header.php"); ?>
+		</div>
 		<div id="content_container">
-			<p>
-				Update Interval: <select id="interval">
-					<option value="10">10 seconds</option>
-					<option value="60" selected>1 minute</option>
-					<option value="300">5 minutes</option>
-					<option value="600">10 minutes</option>
-				</select>
-			</p>
 			<div id="posts" />
 		</div>
 		<div id="footer">	
