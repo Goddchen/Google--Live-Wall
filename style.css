@@ -14,7 +14,6 @@ body {
 	top: 0px;
     background:#efefef;
     text-align:center;
-    padding:5px;
 	width: 100%;
 }
 
@@ -22,13 +21,12 @@ body {
     position:fixed;
     bottom:0px;
     background:#efefef;
-    text-align:center;
-    padding:10px;
     width:100%;
 }
 
 .post {
 	border: solid 1px black;
+	border-radius: 8px;
 	margin: 20px;
 	background-color: rgba(0,0,0,0.2);
 }
