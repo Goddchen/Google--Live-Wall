@@ -50,9 +50,11 @@
 								if(!$("#post-" + item.id).length) {
 									var newPost = 
 										"<div class='post' id='post-" + item.id + "'><p>"
+										+ "<table><tr><td style='text-align:center,top;'>"
 										+ "<a href='" + item.url + "'>" + item.published + "</a><br>"
 										+ "<a href='" + item.actor.url + "'><img src='" + item.actor.image.url + "'></a><br>"
 										+ "<a href='" + item.actor.url + "'>" + item.actor.displayName + "</a><br><br>"
+										+ "</td><td width='100%'>"
 										+ item.object.content + "<br><br>";
 										if(item.object.attachments) {
 											$.each(item.object.attachments, function(i, attachment) {
@@ -66,8 +68,10 @@
 											});
 										}
 									newPost += "<g:plusone href='" + item.url + "'></g:plusone><br>";
-									newPost += "</p></div>";
+									newPost += "</td></table></p></div>";
 									$("#posts").prepend(newPost);
+									//$("#post-"+item.id).fadeIn('slow');
+									$("#post-"+item.id).slideDown();
 								}
 							});
 					});

@@ -29,6 +29,7 @@ body {
 	border-radius: 8px;
 	margin: 20px;
 	background-color: rgba(0,0,0,0.2);
+	display: none;
 }
 
 .topright {
@@ -36,4 +37,9 @@ body {
 	position: absolute;
 	top: 0px;
 	right: 0px;
+}
+
+td {
+	text-align: center;
+	vertical-align: top;
 }
