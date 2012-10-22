@@ -1,5 +1,5 @@
 <div style="float: left; width: 100%;">
-	<h1>Google+ Wall for "<?php echo($query); ?>"</h1>
+	<h1>Google+ Live Wall for "<?php echo($query); ?>"</h1>
 	<p>
 		Update Interval:
 		<select id="interval">
