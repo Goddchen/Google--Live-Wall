@@ -4,6 +4,7 @@
 	<html>
 	<head>
 		<link rel="stylesheet" type="text/css" href="style.css">
+		<title>Google+ Live Wall</title>
 	</head>
 	<body>
 		<h1>Google+ Live Wall</h1>
@@ -28,6 +29,7 @@
 ?>
 	<html>
 	<head>
+		<title>Google+ Live Wall for <?php echo($query); ?></title>
 		<link rel="stylesheet" type="text/css" href="style.css">
 		<script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
 		<script type="text/javascript">
@@ -63,6 +65,7 @@
 												}
 											});
 										}
+									newPost += "<g:plusone href='" + item.url + "'></g:plusone><br>";
 									newPost += "</p></div>";
 									$("#posts").prepend(newPost);
 								}
@@ -76,6 +79,14 @@
 					interval = setInterval(updatePosts, 1000*$(this).val());
 				});
 			});
+		</script>
+		<!-- Place this tag after the last +1 button tag. -->
+		<script type="text/javascript">
+		  (function() {
+			var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+			po.src = 'https://apis.google.com/js/plusone.js';
+			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+		  })();
 		</script>
 	</head>
 	<body>
