@@ -69,8 +69,11 @@
 										+ "<table><tr><td style='text-align:center,top;'>"
 										+ "<a href='" + item.url + "'>" + item.published + "</a><br>"
 										+ "<a href='" + item.actor.url + "'><img src='" + item.actor.image.url + "'></a><br>"
-										+ "<a href='" + item.actor.url + "'>" + item.actor.displayName + "</a>"
-										+ "</td><td width='100%'>";
+										+ "<a href='" + item.actor.url + "'>" + item.actor.displayName + "</a>";
+										if(item.object.actor) {
+											newPost += "<br><i>Originally posted by " + item.object.actor.displayName + "</i>";
+										}
+										newPost += "</td><td width='100%'>";
 										if(item.object.content.length > 0) {
 											newPost += item.object.content + "<br><br>";
 										}
