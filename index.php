@@ -41,13 +41,13 @@
 		if(isset($_REQUEST['orderBy']) && "" !== $_REQUEST['orderBy']) {
 			$plusurl .= "&orderBy=".$_REQUEST['orderBy'];
 		}
-		echo($plusurl);
 ?>
 	<html>
 	<head>
 		<title>Google+ Live Wall for <?php echo($query); ?></title>
 		<link rel="stylesheet" type="text/css" href="style.css">
 		<script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
+		<script src="https://github.com/phstc/jquery-dateFormat/raw/master/jquery.dateFormat-1.0.js"></script>
 		<script type="text/javascript">
 			$(document).ready(function() {
 				function reverseSort(a, b) {
@@ -66,14 +66,14 @@
 								if(!$("#post-" + item.id).length) {
 									var newPost = 
 										"<div class='post' id='post-" + item.id + "'><p>"
-										+ "<table><tr><td style='text-align:center,top;'>"
-										+ "<a href='" + item.url + "'>" + item.published + "</a><br>"
+										+ "<table width='100%'><tr><td style='text-align:center,top;' width='100px'>"
+										+ "<a href='" + item.url + "'>" + $.format.date(Date.parse(item.published), "yyyy-MM-dd HH:mm:ss") + "</a><br>"
 										+ "<a href='" + item.actor.url + "'><img src='" + item.actor.image.url + "'></a><br>"
 										+ "<a href='" + item.actor.url + "'>" + item.actor.displayName + "</a>";
 										if(item.object.actor) {
 											newPost += "<br><i>Originally posted by " + item.object.actor.displayName + "</i>";
 										}
-										newPost += "</td><td width='100%'>";
+										newPost += "</td><td>";
 										if(item.object.content.length > 0) {
 											newPost += item.object.content + "<br><br>";
 										}
