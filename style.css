@@ -43,3 +43,7 @@ td {
 	text-align: center;
 	vertical-align: top;
 }
+
+.post_image {
+	margin: 3px;
+}

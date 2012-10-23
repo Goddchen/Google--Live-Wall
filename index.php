@@ -53,24 +53,27 @@
 										+ "<table><tr><td style='text-align:center,top;'>"
 										+ "<a href='" + item.url + "'>" + item.published + "</a><br>"
 										+ "<a href='" + item.actor.url + "'><img src='" + item.actor.image.url + "'></a><br>"
-										+ "<a href='" + item.actor.url + "'>" + item.actor.displayName + "</a><br><br>"
-										+ "</td><td width='100%'>"
-										+ item.object.content + "<br><br>";
+										+ "<a href='" + item.actor.url + "'>" + item.actor.displayName + "</a>"
+										+ "</td><td width='100%'>";
+										if(item.object.content.length > 0) {
+											newPost += item.object.content + "<br><br>";
+										}
 										if(item.object.attachments) {
 											$.each(item.object.attachments, function(i, attachment) {
-												if(attachment.objectType === "photo" && attachment.fullImage && attachment.fullImage.height && attachment.fullImage.width) {
-													newPost += "<a href='" + attachment.fullImage.url + "' target='_blank'><img width='320' src='" + attachment.fullImage.url + "' /></a><br><br>";
+												if(attachment.objectType === "article") {
+													newPost += "<br><a href='" + attachment.url + "'>" + attachment.displayName + "</a><br>" + attachment.content + "<br>";
+												} else if(attachment.objectType === "photo" && attachment.fullImage && attachment.fullImage.height && attachment.fullImage.width) {
+													newPost += "<a href='" + attachment.fullImage.url + "' target='_blank'><img class='post_image' width='320' src='" + attachment.fullImage.url + "' /></a>";
 												} else if(attachment.objectType === "photo" && attachment.fullImage && (!attachment.fullImage.height || !attachment.fullImage.width)) {
-													newPost += "<img src='" + attachment.image.url + "' /><br><br>";
+													newPost += "<img src='" + attachment.image.url + "' />";
 												} else if(attachment.objectType === "video") {
-													newPost += "<iframe class='youtube-player' type='text/html' width='480' height='288' src='"+attachment.embed.url+"' frameborder='0'></iframe><br><br>";
+													newPost += "<br><iframe class='youtube-player' type='text/html' width='480' height='288' src='"+attachment.embed.url+"' frameborder='0'></iframe><br>";
 												}
 											});
 										}
-									newPost += "<g:plusone href='" + item.url + "'></g:plusone><br>";
+									newPost += "<p><g:plusone href='" + item.url + "'></g:plusone></p>";
 									newPost += "</td></table></p></div>";
 									$("#posts").prepend(newPost);
-									//$("#post-"+item.id).fadeIn('slow');
 									$("#post-"+item.id).slideDown();
 								}
 							});
