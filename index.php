@@ -11,8 +11,17 @@
 		<div id="content_container">
 			<p>
 				<form action="index.php" method="GET">
-					<label for="query">Query </label>
-					<input type="text" name="query" />
+					Query: <input type="text" name="query" /><br>
+					Order By: <select name="orderBy">
+						<option value=""></option>
+						<option value="recent" selected>Recent</option>
+						<option value="best">Best</option>
+					</select><br>
+					Language: <select name="language">
+						<option value="" selected></option>
+						<option value="en">English</option>
+						<option value="de">German</option>
+					</select><br>
 					<input type="submit" />
 				</form>
 			</p>
@@ -25,7 +34,14 @@
 <?php 
 	} else {
 		$query = $_REQUEST['query'];
-		$plusurl = "https://www.googleapis.com/plus/v1/activities?query=".urlencode($query)."&maxResults=20&orderBy=recent&key=AIzaSyAFnC4wup5dShT-Zdu_csL6Ag05IGp307U";
+		$plusurl = "https://www.googleapis.com/plus/v1/activities?query=".urlencode($query)."&maxResults=20&key=AIzaSyAFnC4wup5dShT-Zdu_csL6Ag05IGp307U";
+		if(isset($_REQUEST['language']) && "" !== $_REQUEST['language']) {
+			$plusurl .= "&language=".$_REQUEST['language'];
+		}
+		if(isset($_REQUEST['orderBy']) && "" !== $_REQUEST['orderBy']) {
+			$plusurl .= "&orderBy=".$_REQUEST['orderBy'];
+		}
+		echo($plusurl);
 ?>
 	<html>
 	<head>
