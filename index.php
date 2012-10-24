@@ -7,7 +7,9 @@
 		<title>Google+ Live Wall</title>
 	</head>
 	<body>
-		<h1>Google+ Live Wall</h1>
+		<div id="header">
+			<?php include("header.php"); ?>
+		</div>
 		<div id="content_container">
 			<p>
 				<form action="index.php" method="GET">
