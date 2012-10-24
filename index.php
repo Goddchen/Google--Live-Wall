@@ -51,6 +51,9 @@
 		<script src="js/gpluswall.js"></script>
 		<script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
 		<script src="https://github.com/phstc/jquery-dateFormat/raw/master/jquery.dateFormat-1.0.js"></script>
+		<script type="text/javascript" src="https://apis.google.com/js/plusone.js">
+			{"parsetags": "explicit"}
+		</script>
 		<script type="text/javascript">
 			$(document).ready(function() {
 				var plusUrl = "<?php echo($plusurl); ?>";
@@ -61,14 +64,6 @@
 					interval = setInterval(function() { updatePosts(plusUrl); }, 1000*$(this).val());
 				});
 			});
-		</script>
-		<!-- Place this tag after the last +1 button tag. -->
-		<script type="text/javascript">
-		  (function() {
-			var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
-			po.src = 'https://apis.google.com/js/plusone.js';
-			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
-		  })();
 		</script>
 	</head>
 	<body>

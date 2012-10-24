@@ -38,10 +38,11 @@ function updatePosts(plusUrl) {
 								}
 							});
 						}
-					newPost += "<p><g:plusone href='" + item.url + "'></g:plusone></p>";
+					newPost += "<p><div id='post-plusone-"+item.id+"'><g:plusone href='" + item.url + "' width='400' annotation='inline'></g:plusone></div></p>";
 					newPost += "</td></table></p></div>";
 					$("#posts").prepend(newPost);
 					$("#post-"+item.id).slideDown();
+					gapi.plusone.go("post-plusone-"+item.id);
 				}
 			});
 	});
