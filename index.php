@@ -46,63 +46,17 @@
 	<head>
 		<title>Google+ Live Wall for <?php echo($query); ?></title>
 		<link rel="stylesheet" type="text/css" href="style.css">
+		<script src="js/gpluswall.js"></script>
 		<script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
 		<script src="https://github.com/phstc/jquery-dateFormat/raw/master/jquery.dateFormat-1.0.js"></script>
 		<script type="text/javascript">
 			$(document).ready(function() {
-				function reverseSort(a, b) {
-					// Example: 2012-10-21T13:56:28.000Z
-					var aDate = Date.parse(a.published);
-					var bDate = Date.parse(b.published);
-					return aDate - bDate;
-				}
-				
-				function updatePosts() {
-					$.getJSON(
-						"<?php echo($plusurl); ?>",
-						function (data) {
-							data.items.sort(reverseSort);
-							$.each(data.items, function(i, item) {
-								if(!$("#post-" + item.id).length) {
-									var newPost = 
-										"<div class='post' id='post-" + item.id + "'><p>"
-										+ "<table width='100%'><tr><td style='text-align:center,top;' width='100px'>"
-										+ "<a href='" + item.url + "'>" + $.format.date(Date.parse(item.published), "yyyy-MM-dd HH:mm:ss") + "</a><br>"
-										+ "<a href='" + item.actor.url + "'><img src='" + item.actor.image.url + "'></a><br>"
-										+ "<a href='" + item.actor.url + "'>" + item.actor.displayName + "</a>";
-										if(item.object.actor) {
-											newPost += "<br><i>Originally posted by " + item.object.actor.displayName + "</i>";
-										}
-										newPost += "</td><td>";
-										if(item.object.content.length > 0) {
-											newPost += item.object.content + "<br><br>";
-										}
-										if(item.object.attachments) {
-											$.each(item.object.attachments, function(i, attachment) {
-												if(attachment.objectType === "article") {
-													newPost += "<br><a href='" + attachment.url + "'>" + attachment.displayName + "</a><br>" + attachment.content + "<br>";
-												} else if(attachment.objectType === "photo" && attachment.fullImage && attachment.fullImage.height && attachment.fullImage.width) {
-													newPost += "<a href='" + attachment.fullImage.url + "' target='_blank'><img class='post_image' width='320' src='" + attachment.fullImage.url + "' /></a>";
-												} else if(attachment.objectType === "photo" && attachment.fullImage && (!attachment.fullImage.height || !attachment.fullImage.width)) {
-													newPost += "<img src='" + attachment.image.url + "' />";
-												} else if(attachment.objectType === "video") {
-													newPost += "<br><iframe class='youtube-player' type='text/html' width='480' height='288' src='"+attachment.embed.url+"' frameborder='0'></iframe><br>";
-												}
-											});
-										}
-									newPost += "<p><g:plusone href='" + item.url + "'></g:plusone></p>";
-									newPost += "</td></table></p></div>";
-									$("#posts").prepend(newPost);
-									$("#post-"+item.id).slideDown();
-								}
-							});
-					});
-				}
-				var interval = setInterval(updatePosts, 60*1000);
-				updatePosts();
+				var plusUrl = "<?php echo($plusurl); ?>";
+				var interval = setInterval(function() { updatePosts(plusUrl); }, 60*1000);
+				updatePosts(plusUrl);
 				$("#interval").change(function() {
 				clearInterval(interval);
-					interval = setInterval(updatePosts, 1000*$(this).val());
+					interval = setInterval(function() { updatePosts(plusUrl); }, 1000*$(this).val());
 				});
 			});
 		</script>
