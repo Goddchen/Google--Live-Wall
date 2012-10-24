@@ -5,6 +5,9 @@
 	<head>
 		<link rel="stylesheet" type="text/css" href="style.css">
 		<title>Google+ Live Wall</title>
+		<script type="text/javascript" src="https://apis.google.com/js/plusone.js">
+			{"parsetags": "explicit"}
+		</script>
 	</head>
 	<body>
 		<div id="header">
