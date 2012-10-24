@@ -2,7 +2,7 @@
 	<h1>Google+ Live Wall
 	<?php
 		if(isset($query)) {
-			echo("for $query");
+			echo("for \"$query\"");
 		}
 	?>
 	</h1>
@@ -24,14 +24,7 @@
 </div>
 <div class="topright">
 	<!-- Place this tag where you want the badge to render. -->
-	<div class="g-plus" data-width="347" data-href="//plus.google.com/110660004375811502712" data-rel="publisher"></div>
-
-	<!-- Place this tag after the last badge tag. -->
-	<script type="text/javascript">
-	  (function() {
-		var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
-		po.src = 'https://apis.google.com/js/plusone.js';
-		var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
-	  })();
-	</script>
+	<g:plus width="400" href="//plus.google.com/110660004375811502712" rel="publisher"></g:plus>
+	<!-- Place this render call where appropriate. -->
+	<script type="text/javascript">gapi.plus.go();</script>
 </div>
