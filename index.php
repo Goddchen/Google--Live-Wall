@@ -53,7 +53,7 @@
 		<link rel="stylesheet" type="text/css" href="style.css">
 		<script src="js/gpluswall.js"></script>
 		<script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
-		<script src="https://github.com/phstc/jquery-dateFormat/raw/master/jquery.dateFormat-1.0.js"></script>
+		<script src="https://rawgithub.com/phstc/jquery-dateFormat/master/jquery.dateFormat-1.0.js"></script>
 		<script type="text/javascript" src="https://apis.google.com/js/plusone.js">
 			{"parsetags": "explicit"}
 		</script>
