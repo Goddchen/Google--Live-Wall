@@ -29,10 +29,12 @@ function updatePosts(plusUrl) {
 							$.each(item.object.attachments, function(i, attachment) {
 								if(attachment.objectType === "article") {
 									newPost += "<br><a href='" + attachment.url + "'>" + attachment.displayName + "</a><br>" + attachment.content + "<br>";
-								} else if(attachment.objectType === "photo" && attachment.fullImage && attachment.fullImage.height && attachment.fullImage.width) {
-									newPost += "<a href='" + attachment.fullImage.url + "' target='_blank'><img class='post_image' width='320' src='" + attachment.fullImage.url + "' /></a>";
-								} else if(attachment.objectType === "photo" && attachment.fullImage && (!attachment.fullImage.height || !attachment.fullImage.width)) {
-									newPost += "<img src='" + attachment.image.url + "' />";
+								} else if(attachment.objectType === "photo") {
+									if(attachment.fullImage && "https:" !== attachment.fullImage.url) {
+										newPost += "<img class='post_image' width='320' src='" + attachment.fullImage.url + "' />"; 
+									} else if(attachment.image) {
+										newPost += "<img class='post_image' width='320' src='" + attachment.image.url + "' />"; 
+									}
 								} else if(attachment.objectType === "video") {
 									newPost += "<br><iframe class='youtube-player' type='text/html' width='480' height='288' src='"+attachment.embed.url+"' frameborder='0'></iframe><br>";
 								}
